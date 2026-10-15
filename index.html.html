@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이해인 - Fashion Director</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Noto+Serif+KR:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // 다크모드 설정 활성화 (JS로 제어)
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans KR"', 'sans-serif'],
+                        serif: ['"Playfair Display"', '"Noto Serif KR"', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#FBFBF9',       
+                            text: '#1C1C1C',     
+                            accent: '#6B6B6B',   
+                            border: '#E8E6E1',
+                            
+                            // 다크모드용 컬러
+                            darkBg: '#121212',
+                            darkText: '#F0EFEA',
+                            darkAccent: '#A0A0A0',
+                            darkBorder: '#333333'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* 기본 배경 및 전환 효과 */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        /* 우아한 페이드인 애니메이션 */
+        .fade-in {
+            animation: fadeInup 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        @keyframes fadeInup {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 링크 호버 효과 */
+        .link-hover {
+            position: relative;
+            text-decoration: none;
+        }
+        .link-hover::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: currentColor;
+            transform-origin: bottom right;
+            transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+        }
+        .link-hover:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+    </style>
+</head>
+<!-- 라이트/다크 모드 색상 동시 적용 -->
+<body class="font-sans min-h-screen flex flex-col items-center bg-brand-bg text-brand-text dark:bg-brand-darkBg dark:text-brand-darkText">
+
+    <!-- 다크모드 토글 버튼 (JavaScript 기능) -->
+    <div class="fixed top-6 right-8 md:top-10 md:right-12 z-50 fade-in delay-4">
+        <button id="theme-toggle" class="text-xs font-serif uppercase tracking-widest border-b border-transparent hover:border-current transition-colors pb-1 text-brand-accent dark:text-brand-darkAccent">
+            Dark Mode
+        </button>
+    </div>
+
+    <main class="w-full max-w-3xl px-8 py-24 md:py-32 flex flex-col justify-center">
+        
+        <header class="fade-in text-center md:text-left border-b border-brand-border dark:border-brand-darkBorder pb-12">
+            <div class="mb-10 flex justify-center md:justify-start">
+                <div class="w-24 h-24 rounded-full border border-brand-border dark:border-brand-darkBorder p-1 transition-colors duration-500">
+                    <img src="https://placehold.co/200x200/e8e6e1/1c1c1c?text=Haein&font=playfair-display" alt="이해인 프로필" class="w-full h-full rounded-full object-cover">
+                </div>
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl font-serif font-medium tracking-tight mb-4">
+                안녕하세요, 이해인입니다.
+            </h1>
+            <p class="text-sm md:text-base text-brand-accent dark:text-brand-darkAccent tracking-[0.2em] font-serif uppercase transition-colors duration-500">
+                Fashion Director & Fashion Designer
+            </p>
+        </header>
+
+        <section class="mt-16 fade-in delay-1">
+            <h2 class="text-xs font-serif uppercase tracking-[0.25em] mb-6 flex items-center">
+                <span class="w-8 h-px bg-current mr-4"></span>
+                About Me
+            </h2>
+            <div class="space-y-6 text-[15px] md:text-base leading-loose font-light break-keep pl-12 border-l border-brand-border dark:border-brand-darkBorder transition-colors duration-500">
+                <p>패션 제작 회사의 6년 실무 경력으로 패션디렉터로의 길을 걷고 있습니다.</p>
+                <p>가천대학교 경영학과 및 패션산업학과를 복수전공하고 있습니다.</p>
+                <p>글로벌 패션디렉터가 되기 위해 탐구하고 열정적인 마음으로 배우는 자세를 갖고 있습니다.</p>
+            </div>
+        </section>
+
+        <section class="mt-20 fade-in delay-2">
+            <h2 class="text-xs font-serif uppercase tracking-[0.25em] mb-8 flex items-center">
+                <span class="w-8 h-px bg-current mr-4"></span>
+                Interests & Skills
+            </h2>
+            <div class="flex flex-wrap gap-3 pl-0 md:pl-12">
+                <!-- 태그들도 다크모드 대응 -->
+                <span class="px-5 py-2 border border-brand-text dark:border-brand-darkText rounded-full text-xs uppercase tracking-widest hover:bg-brand-text hover:text-brand-bg dark:hover:bg-brand-darkText dark:hover:text-brand-darkBg transition-colors duration-300 cursor-default">Pattern</span>
+                <span class="px-5 py-2 border border-brand-text dark:border-brand-darkText rounded-full text-xs uppercase tracking-widest hover:bg-brand-text hover:text-brand-bg dark:hover:bg-brand-darkText dark:hover:text-brand-darkBg transition-colors duration-300 cursor-default">Making</span>
+                <span class="px-5 py-2 border border-brand-text dark:border-brand-darkText rounded-full text-xs uppercase tracking-widest hover:bg-brand-text hover:text-brand-bg dark:hover:bg-brand-darkText dark:hover:text-brand-darkBg transition-colors duration-300 cursor-default">CAD</span>
+                <span class="px-5 py-2 border border-brand-text dark:border-brand-darkText rounded-full text-xs uppercase tracking-widest hover:bg-brand-text hover:text-brand-bg dark:hover:bg-brand-darkText dark:hover:text-brand-darkBg transition-colors duration-300 cursor-default">Communication</span>
+                <span class="px-5 py-2 border border-brand-text dark:border-brand-darkText rounded-full text-xs uppercase tracking-widest hover:bg-brand-text hover:text-brand-bg dark:hover:bg-brand-darkText dark:hover:text-brand-darkBg transition-colors duration-300 cursor-default">Coffee</span>
+            </div>
+        </section>
+
+        <section class="mt-20 fade-in delay-3">
+            <h2 class="text-xs font-serif uppercase tracking-[0.25em] mb-8 flex items-center">
+                <span class="w-8 h-px bg-current mr-4"></span>
+                Contact
+            </h2>
+            <ul class="flex flex-col space-y-5 pl-0 md:pl-12 font-light text-[15px]">
+                <li>
+                    <a href="mailto:brand_me16@naver.com" class="group flex items-center w-fit">
+                        <svg class="w-4 h-4 mr-4 text-brand-accent dark:text-brand-darkAccent group-hover:text-brand-text dark:group-hover:text-brand-darkText transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <span class="link-hover tracking-wide">brand_me16@naver.com</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="mailto:lhi1616@gachon.ac.kr" class="group flex items-center w-fit">
+                        <svg class="w-4 h-4 mr-4 text-brand-accent dark:text-brand-darkAccent group-hover:text-brand-text dark:group-hover:text-brand-darkText transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        <span class="link-hover tracking-wide">lhi1616@gachon.ac.kr</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <footer class="mt-32 pt-8 text-center md:text-left fade-in delay-4">
+            <p class="text-xs text-brand-accent dark:text-brand-darkAccent font-serif tracking-widest uppercase transition-colors">
+                &copy; <span id="year"></span> Haein Lee. All rights reserved.
+            </p>
+        </footer>
+    </main>
+
+    <!-- JavaScript 기능 (다크모드 제어) -->
+    <script>
+        // 1. 현재 연도 표시 기능
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 2. 다크모드 토글 기능 (교수님 필수 요구사항)
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        themeToggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            
+            // 버튼 텍스트 변경
+            if (htmlElement.classList.contains('dark')) {
+                themeToggleBtn.textContent = 'Light Mode';
+            } else {
+                themeToggleBtn.textContent = 'Dark Mode';
+            }
+        });
+    </script>
+</body>
+</html>
